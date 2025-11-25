@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 
 namespace _1lab
 {
@@ -17,16 +17,32 @@ namespace _1lab
                 }
                 catch (MeterReadingException)
                 {
-
                 }
             }
+            //контейнер
+            var commandDescriptions = new Dictionary<string, string>
+            {
+                { "1", "Вывести исходные данные" },
+                { "2", "Фильтр по дате" },
+                { "3", "Выход из программы" }
+            };
 
             while (true)
             {
                 Console.WriteLine("\n1 - Исходные данные\n2 - Фильтр по дате\n3 - Выход");
                 Console.Write("Выберите: ");
 
-                switch (Console.ReadLine())
+                string choice = Console.ReadLine();
+
+                if (!commandDescriptions.ContainsKey(choice))
+                {
+                    Console.WriteLine("Некорректная команда");
+                    continue;
+                }
+
+                Console.WriteLine($"\nВы выбрали: {commandDescriptions[choice]}");
+
+                switch (choice)
                 {
                     case "1":
                         Console.WriteLine("\nИсходные данные:");
