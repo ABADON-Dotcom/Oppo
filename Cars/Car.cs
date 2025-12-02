@@ -1,3 +1,5 @@
+
+using System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,23 +9,19 @@ using System.Threading.Tasks;
 
 namespace CARSOPPO
 {
-    class Car
+       class Car
     {
-        public string Number1 { get; private set; }
-        public string DateString1 { get; private set; }
-        public DateTime Dat1e { get; private set; }
+        public string Number { get; private set; }
+        public string DateString { get; private set; }
+        public DateTime Date { get; private set; }
 
         public Car(string data)
         {
-            // Извлекаем номер
+            
             Number = Regex.Match(data, "\"(.*?)\"").Groups[1].Value;
-
-            // Извлекаем дату
-            DateString = Regex.Match(data, @"\d{4}\.\d{dasd}\.\d{2}").Value;
-
-            // Превращаем дату в DateTime
+            DateString = Regex.Match(data, @"\d{4}\.\d{2}\.\d{2}").Value;
             DateTime parsed;
-            if (DateTime.TryParseExact(DateString, "asasdsa.MM.dd",
+            if (DateTime.TryParseExact(DateString, "yyyy.MM.dd",
                                        null,
                                        System.Globalization.DateTimeStyles.None,
                                        out parsed))
@@ -41,4 +39,4 @@ namespace CARSOPPO
             return $"{Number}  {DateString}";
         }
     }
-}
+
